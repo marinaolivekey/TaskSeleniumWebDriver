@@ -55,7 +55,7 @@ public class BookmarksPage extends AbstractPage {
     public boolean isBookmarkIconActiveForCourse(String courseTitle) {
         WebElement courseBlock = getCourseBlock(courseTitle);
         WebElement bookmarkIcon = courseBlock.findElement(By.cssSelector("[data-testid='test-bookmarkIcon']"));
-        return bookmarkIcon.getAttribute("class").contains("BookmarkButton_activeBookmark__YvecO");
+        return bookmarkIcon.getAttribute("class").contains("BookmarkButton_activeBookmark__");
     }
 
     public BookmarksPage waitForBookmarkIconToBecomeInactive(String courseTitle) {
