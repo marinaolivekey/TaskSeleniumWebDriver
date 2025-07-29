@@ -2,21 +2,19 @@ package tests;
 
 import com.epam.learn.util.driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
-public class CommonConditions {
+public abstract class CommonConditions {
     protected WebDriver driver;
 
-    @BeforeSuite(alwaysRun = true)
-    public void setUpSuite() {
+    @BeforeClass(alwaysRun = true)
+    public void setUpClass() {
         driver = DriverSingleton.getDriver();
     }
 
-    @AfterSuite(alwaysRun = true)
-    public void tearDownSuite() {
-        if (driver != null) {
-            DriverSingleton.quitDriver();
-        }
+    @AfterClass(alwaysRun = true)
+    public void tearDownClass() {
+        DriverSingleton.quitDriver();
     }
 }
