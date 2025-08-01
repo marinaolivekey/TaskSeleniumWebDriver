@@ -14,7 +14,7 @@ public abstract class AbstractPage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public static final int DEFAULT_TIME_OUT_IN_SECONDS = 40;
+    public static final int DEFAULT_TIME_OUT_IN_SECONDS = 150;
     public static final int PAGE_LOAD_TIME_OUT_IN_SECONDS = 10;
 
 

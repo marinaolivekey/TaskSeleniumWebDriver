@@ -1,6 +1,10 @@
 package tests;
 
 import com.epam.learn.pages.HomePage;
+import com.epam.learn.pages.HomePageValidator;
+import com.epam.learn.pages.LoginPage;
+import com.epam.learn.pages.HighlightLoginPageDecorator;
+import com.epam.learn.pages.LoginPageActions;
 import com.epam.learn.pages.StartPage;
 import com.epam.learn.util.ConfigReader;
 import org.testng.annotations.BeforeClass;
@@ -16,18 +20,22 @@ public class TASK_SW_2_VerifyUserCanLoginAndSeesCorrectEmailInAvatar extends Com
     private static final Logger logger = LoggerFactory
             .getLogger(TASK_SW_2_VerifyUserCanLoginAndSeesCorrectEmailInAvatar.class);
     private HomePage homePage;
+    private HomePageValidator homePageValidator;
     private String profileEmail;
 
     @BeforeClass(inheritGroups = false, alwaysRun = true)
     public void setUp() {
         logger.info("Setting up test environment");
-        homePage = new StartPage(driver)
+        LoginPageActions loginPage = new StartPage(driver)
                 .openPage()
                 .waitForLoginButtonDisplayed()
-                .clickSignIn()
+                .clickSignIn();
+        loginPage = new HighlightLoginPageDecorator(loginPage, driver);
+        homePage = loginPage
                 .login(ConfigReader.getLoginEmail())
                 .waitProfileMenuDisplayed()
                 .clickProfileAvatar();
+        homePageValidator = new HomePageValidator(driver);
         profileEmail = homePage.waitProfileDropDownIsDisplayed().getProfileEmail();
         logger.debug("Test setup completed, profile email: {}", profileEmail);
     }
@@ -35,7 +43,7 @@ public class TASK_SW_2_VerifyUserCanLoginAndSeesCorrectEmailInAvatar extends Com
     @Test(priority = 1)
     public void verifyDropDownIsDisplayed() {
         logger.info("Verifying dropdown is displayed");
-        assertTrue(homePage.isDropdownBodyDisplayed(),
+        assertTrue(homePageValidator.isDropdownBodyDisplayed(),
                 "DropDown not Displayed");
         logger.debug("Dropdown is displayed");
     }
@@ -49,4 +57,3 @@ public class TASK_SW_2_VerifyUserCanLoginAndSeesCorrectEmailInAvatar extends Com
         logger.debug("Profile email matches expected");
     }
 }
-

@@ -1,7 +1,9 @@
 package tests;
 
-import com.epam.learn.pages.*;
-import com.epam.learn.util.ConfigReader;
+import com.epam.learn.pages.BookmarksPage;
+import com.epam.learn.pages.CoursePage;
+import com.epam.learn.pages.NavigationFacade;
+import com.epam.learn.pages.VerticalMenu;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -10,35 +12,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Test(groups = {"regression"})
-public class TASK_SW_2_VerifyUserCanAddCourseToBookmarks extends CommonConditions{
+public class TASK_SW_2_VerifyUserCanAddCourseToBookmarks extends CommonConditions {
     private static final Logger logger = LoggerFactory
             .getLogger(TASK_SW_2_VerifyUserCanAddCourseToBookmarks.class);
-    private HomePage homePage;
     private CoursePage coursePage;
     private BookmarksPage bookmarksPage;
-
     private static final String COURSE_TITLE = "Getting Ready for Assessment";
 
     @BeforeClass(inheritGroups = false, alwaysRun = true)
     public void setUp() {
         logger.info("Setting up test environment");
-        homePage = new StartPage(driver)
-                .openPage()
-                .waitForLoginButtonDisplayed()
-                .clickSignIn()
-                .login(ConfigReader.getLoginEmail())
-                .waitProfileMenuDisplayed();
-
-        coursePage = new VerticalMenu(driver)
-                .waitVerticalMenuCatalogVisibility()
-                .clickCatalogLink()
-                .waitScreenLoaded()
-                .clickLeadershipBlock()
-                .clickGeneral()
-                .clickCourseByName(COURSE_TITLE)
-                .waitScreenLoaded()
+        NavigationFacade navigationFacade = new NavigationFacade(driver);
+        coursePage = navigationFacade
+                .navigateToCoursePage(COURSE_TITLE)
                 .clickBookmarkIcon();
-
         bookmarksPage = new VerticalMenu(driver)
                 .clickBookmarksLink()
                 .waitScreenLoaded()

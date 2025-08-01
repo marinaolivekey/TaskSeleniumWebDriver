@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LoginPage extends AbstractPage {
+public class LoginPage extends AbstractPage implements LoginPageActions {
     private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
 
     @FindBy(id = "content")
@@ -26,6 +26,7 @@ public class LoginPage extends AbstractPage {
         logger.debug("Initialized LoginPage");
     }
 
+    @Override
     public LoginPage waitLoginFormVisibility() {
         logger.info("Waiting for login form to be visible");
         waitForVisibility(loginForm);
@@ -33,16 +34,7 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
-    public HomePage login(String username) {
-        logger.info("Logging in with username: {}", username);
-                typeLoginName(username)
-                .clickSubmit()
-                .waitProfileMenuDisplayed();
-        logger.debug("Login completed");
-        return new HomePage(driver);
-    }
-
-
+    @Override
     public LoginPage typeLoginName(String username) {
         logger.info("Typing username: {}", username);
         waitForVisibility(usernameField);
@@ -52,11 +44,35 @@ public class LoginPage extends AbstractPage {
         return this;
     }
 
+    @Override
     public HomePage clickSubmit() {
         logger.info("Clicking submit button");
         waitForVisibility(nextButton);
         nextButton.click();
         logger.debug("Submit button clicked");
         return new HomePage(driver);
+    }
+
+    @Override
+    public HomePage login(String username) {
+        logger.info("Logging in with username: {}", username);
+        typeLoginName(username)
+                .clickSubmit()
+                .waitProfileMenuDisplayed();
+        logger.debug("Login completed");
+        return new HomePage(driver);
+    }
+
+    // Геттеры для декоратора
+    protected WebElement getLoginForm() {
+        return loginForm;
+    }
+
+    protected WebElement getUsernameField() {
+        return usernameField;
+    }
+
+    protected WebElement getNextButton() {
+        return nextButton;
     }
 }
