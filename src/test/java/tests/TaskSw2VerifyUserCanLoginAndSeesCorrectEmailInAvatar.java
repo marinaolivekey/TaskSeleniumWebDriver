@@ -2,7 +2,6 @@ package tests;
 
 import com.epam.learn.pages.HomePage;
 import com.epam.learn.pages.HomePageValidator;
-import com.epam.learn.pages.LoginPage;
 import com.epam.learn.pages.HighlightLoginPageDecorator;
 import com.epam.learn.pages.LoginPageActions;
 import com.epam.learn.pages.StartPage;
@@ -16,9 +15,9 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 @Test(groups = {"smoke"})
-public class TASK_SW_2_VerifyUserCanLoginAndSeesCorrectEmailInAvatar extends CommonConditions {
+public class TaskSw2VerifyUserCanLoginAndSeesCorrectEmailInAvatar extends CommonConditions {
     private static final Logger logger = LoggerFactory
-            .getLogger(TASK_SW_2_VerifyUserCanLoginAndSeesCorrectEmailInAvatar.class);
+            .getLogger(TaskSw2VerifyUserCanLoginAndSeesCorrectEmailInAvatar.class);
     private HomePage homePage;
     private HomePageValidator homePageValidator;
     private String profileEmail;

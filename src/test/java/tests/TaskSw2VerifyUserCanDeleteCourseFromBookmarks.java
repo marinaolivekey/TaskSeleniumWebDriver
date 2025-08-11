@@ -11,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Test(groups = {"regression"})
-public class TASK_SW_2_VerifyUserCanDeleteCourseFromBookmarks extends CommonConditions {
+public class TaskSw2VerifyUserCanDeleteCourseFromBookmarks extends CommonConditions {
     private static final Logger logger = LoggerFactory
-            .getLogger(TASK_SW_2_VerifyUserCanDeleteCourseFromBookmarks.class);
+            .getLogger(TaskSw2VerifyUserCanDeleteCourseFromBookmarks.class);
     private CoursePage coursePage;
     private BookmarksPage bookmarksPage;
     private static final String COURSE_TITLE = "What Does It Take to Be an Expert?";

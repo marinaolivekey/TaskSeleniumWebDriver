@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RegressionTestSuite" parallel="methods" thread-count="2">
     <listeners>
-        <listener class-name="com.epam.learn.util.TestFailureListener"/>
+        <listener class-name="util.ReportPortalListener"/>
     </listeners>
     <test name="RegressionTests">
         <groups>

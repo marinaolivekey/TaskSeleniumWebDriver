@@ -12,9 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Test(groups = {"regression"})
-public class TASK_SW_2_VerifyUserCanAddCourseToBookmarks extends CommonConditions {
+public class TaskSw2VerifyUserCanAddCourseToBookmarks extends CommonConditions {
     private static final Logger logger = LoggerFactory
-            .getLogger(TASK_SW_2_VerifyUserCanAddCourseToBookmarks.class);
+            .getLogger(TaskSw2VerifyUserCanAddCourseToBookmarks.class);
     private CoursePage coursePage;
     private BookmarksPage bookmarksPage;
     private static final String COURSE_TITLE = "Getting Ready for Assessment";
