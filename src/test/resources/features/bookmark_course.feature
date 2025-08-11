@@ -1,9 +1,12 @@
 Feature: Bookmarking a course
 
+  Background:
+    Given the user is logged in
+    And the user is on the main page
+
   Scenario Outline: User adds a course to bookmarks and verifies it appears
-    Given the user is on the course page for "<CourseTitle>"
-    And the user is logged in
-    When the user bookmarks the course "<CourseTitle>"
+    When the user navigates to course "<CourseTitle>"
+    And the user bookmarks the course "<CourseTitle>"
     Then the course "<CourseTitle>" should be present in the bookmarks
 
     Examples:
